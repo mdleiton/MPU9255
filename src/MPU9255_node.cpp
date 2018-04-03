@@ -14,15 +14,21 @@ int main(int argc, char **argv){
   ros::NodeHandle n;
   ros::Publisher pub_imu = n.advertise<sensor_msgs::Imu>("imu/data_raw", 2);
   ros::Publisher pub_mag = n.advertise<sensor_msgs::MagneticField>("imu/mag", 2);
-  int fd; 
+  
+	int fd; 
   wiringPiSetup();
   fd = wiringPiI2CSetup(0x68);
+	
+	if (fd == -1) {
+    printf("no i2c device found\n");
+    return -1;
+	}
   int16_t InBuffer[9] = {0}; 
   static int32_t OutBuffer[3] = {0};
 
   while (ros::ok()){
     //http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html 
-    // http://docs.ros.org/api/sensor_msgs/html/msg/MagneticField.html
+    //http://docs.ros.org/api/sensor_msgs/html/msg/MagneticField.html
     sensor_msgs::Imu data_imu;    
     sensor_msgs::MagneticField data_mag;
 
@@ -61,6 +67,7 @@ int main(int argc, char **argv){
     data_mag.magnetic_field.z = InBuffer[8];
     
     pub_imu.publish(data_imu);
+
     pub_mag.publish(data_mag);
 
     ros::spinOnce();
