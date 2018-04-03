@@ -51,7 +51,7 @@ int main(int argc, char **argv){
     data_imu.angular_velocity.y = InBuffer[4]*conversion_gyro;
     data_imu.angular_velocity.z = InBuffer[5]*conversion_gyro; 
 
-    //datos magnetometro
+    //datos magnetómetro
     InBuffer[6]=  (wiringPiI2CReadReg8 (fd, 0x04)<<8)|wiringPiI2CReadReg8 (fd, 0x03);
     InBuffer[7]=  (wiringPiI2CReadReg8 (fd, 0x06)<<8)|wiringPiI2CReadReg8 (fd, 0x05);
     InBuffer[8]=  (wiringPiI2CReadReg8 (fd, 0x08)<<8)|wiringPiI2CReadReg8 (fd, 0x07);
