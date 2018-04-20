@@ -37,6 +37,21 @@ Review the published data with:
     rostopic echo /imu/data_raw
 	rostopic echo /imu/mag
 
+
+Complementary filter
+--------------------
+
+install imu-tools:
+
+	sudo apt-get install ros-kinetic-imu-tools
+
+run launch file:
+
+	source devel/setup.bash
+	roslaunch MPU9255 imu.launch
+
+reference: http://wiki.ros.org/imu_complementary_filter
+
 More information about published topics:
 
 	http://docs.ros.org/api/sensor_msgs/html/msg/Imu.html
