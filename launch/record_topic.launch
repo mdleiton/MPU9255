@@ -1,0 +1,6 @@
+<launch>
+  <arg name="record_data" default="record_topics.bag" />
+
+ <node pkg="rosbag" type="record" name="record"
+       args="record -o $(arg record_data) imu/data imu/mag " />
+</launch>

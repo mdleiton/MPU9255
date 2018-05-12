@@ -26,9 +26,11 @@ Then clone this repository into your ROS workspace(src folder):
 Compile it:
 
     catkin_make
+	g++ offsetIMU.cpp -lwiringPi -o offsetIMU
 
 Run a node:
 
+	./offsetIMU
 	source devel/setup.bash
 	rosrun MPU9255 MPU9255_node
 
@@ -51,6 +53,18 @@ run launch file:
 	roslaunch MPU9255 imu.launch
 
 reference: http://wiki.ros.org/imu_complementary_filter
+
+Create a rosbag file (.bag)
+---------------------------
+
+run launch file:
+
+	source devel/setup.bash
+	roslaunch MPU9255 record_topic.launch
+
+Get data from the topics of the .bag file:
+
+	rostopic echo -b file.bag -p /topic
 
 More information about published topics:
 
