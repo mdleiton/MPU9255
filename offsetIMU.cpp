@@ -6,7 +6,6 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
-
 using namespace std;
 
 int main(int argc, char **argv){
@@ -15,16 +14,18 @@ int main(int argc, char **argv){
   wiringPiSetup();
   fd = wiringPiI2CSetup(0x68);
 
-  int16_t InBuffer[6] = {0}; 
+  int16_t InBuffer[9] = {0}; 
   float giro_x=0,giro_y=0, giro_z=0;
   float acc_x=0,acc_y=0, acc_z=0;
 
   ofstream myfile;
-  myfile.open ("offsetIMU.txt");
+  myfile.open (argv[1]);
   
-  for (int i=0; i<= 1000;i++){
+  float conversion_giro = 1/32.8f;
+  float conversion_acce = 9.8/16384.0f;
 
-	//datos acelerómetro
+  for (int i=0; i< 1000;i++){
+    //datos acelerómetro
     InBuffer[0]=  (wiringPiI2CReadReg8 (fd, 0x3B)<<8)|wiringPiI2CReadReg8 (fd, 0x3C);
     InBuffer[1]=  (wiringPiI2CReadReg8 (fd, 0x3D)<<8)|wiringPiI2CReadReg8 (fd, 0x3E);
     InBuffer[2]=  (wiringPiI2CReadReg8 (fd, 0x3F)<<8)|wiringPiI2CReadReg8 (fd, 0x40);   
@@ -43,18 +44,18 @@ int main(int argc, char **argv){
     giro_z = giro_z + InBuffer[5]; 
 
   }
+  giro_x = (giro_x / 1000 ) * conversion_giro;
+  giro_y = (giro_y / 1000 ) * conversion_giro;
+  giro_z = (giro_z / 1000 ) * conversion_giro;
 
-  giro_x /= 1000;
-  giro_y /= 1000;
-  giro_z /= 1000;
+  acc_x = (acc_x / 1000 ) * conversion_acce;
+  acc_y = (acc_y / 1000 ) * conversion_acce;
+  acc_z = (acc_z / 1000 ) -16384 ;
 
-  acc_x /= 1000;
-  acc_y /= 1000;
-  acc_z = (acc_z / 1000) -16384 ;
+  }
 
-  myfile << giro_x << "," << giro_y << "," << giro_z << "," << acc_x << "," << acc_y << "," << acc_z << endl;
+  myfile << giro_x << "," << giro_y << "," << giro_z << "," << acc_x << "," << acc_y << "," << acc_z * conversion_acce << endl;
   myfile.close();
 
   return 0;
-}
 
