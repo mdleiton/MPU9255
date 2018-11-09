@@ -30,7 +30,7 @@ Compile it:
 
 Run a node:
 
-	./offsetIMU
+	./offsetIMU ofssetData.txt
 	source devel/setup.bash
 	rosrun MPU9255 MPU9255_node
 
