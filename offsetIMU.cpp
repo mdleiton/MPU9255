@@ -11,7 +11,7 @@ using namespace std;
 int main(int argc, char **argv){
 
   int fd; 
-  wiringPiSetup();
+  wiringPiSetupSys();
   fd = wiringPiI2CSetup(0x68);
 
   int16_t InBuffer[9] = {0}; 
