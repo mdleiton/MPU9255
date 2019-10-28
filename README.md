@@ -73,7 +73,8 @@ Visualize Rviz:
 	rviz 				# other terminal
 
 Configure as FIG.1 or load config file in (rviz_config/imu.rviz)
-[!Alt text](media/fig1.png "RVIZ configuration")
+
+![Alt text](media/fig1.png "RVIZ configuration")
 
 GIF:
 
