@@ -72,9 +72,8 @@ Visualize Rviz:
 	roslaunch MPU9255 record_topic.launch
 	rviz 				# other terminal
 
-Configure as FIG.1 or load config file in rviz_config/imu.rviz.
-
-	[!Alt text](media/fig1.png "RVIZ configuration")
+Configure as FIG.1 or load config file in (rviz_config/imu.rviz)
+[!Alt text](media/fig1.png "RVIZ configuration")
 
 GIF:
 
