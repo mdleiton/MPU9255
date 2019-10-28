@@ -1,5 +1,5 @@
 <launch>
-	<node pkg="MPU9255" name="MPU9255_nodeMPU9255_node"/>
+	<node pkg="MPU9255" name="MPU9255_node" type="MPU9255_node"/>
  
 	<node pkg="imu_complementary_filter" type="complementary_filter_node" name="complementary_filter_node" output="screen">
 		<param name="fixed_frame" value="base_link"/>
