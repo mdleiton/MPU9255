@@ -77,7 +77,7 @@ Configure as FIG.1 or load config file in (rviz_config/imu.rviz)
 ![Alt text](media/fig1.png "RVIZ configuration")
 
 GIF:
-
+![Alt text](media/imu.gif "RVIZ working with imu")
 		
 
 
