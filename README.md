@@ -1,13 +1,12 @@
 ROS MPU9255 Node
 ================
-c++ ROS node wrapper for the mpu9255 gyroscope / accelerometer/magnetometer.
-Reads accelerometer, gyroscopic and magnetic data in 3D giving 9 Degrees of Freedom.
 
-Publishes sensor_msgs::IMU to /imu/data_raw topic(angular_velocity and linear_acceleration).
-Publishes sensor_msgs::MagneticField to /imu/data_raw topic(angular_velocity and linear_acceleration).
-
-Supported interface : I2C.
-used in Raspberry PI 3.
+c++ ROS node wrapper for the mpu9255 gyroscope / accelerometer/magnetometer.\
+Reads accelerometer, gyroscopic and magnetic data in 3D giving 9 Degrees of Freedom.\
+Publishes sensor_msgs::IMU to /imu/data_raw topic(angular_velocity and linear_acceleration).\
+Publishes sensor_msgs::MagneticField to /imu/data_raw topic(angular_velocity and linear_acceleration).\
+Supported interface : I2C.\
+used in Raspberry PI 3.\
 
 Installation
 ------------
@@ -65,6 +64,22 @@ run launch file:
 Get data from the topics of the .bag file:
 
 	rostopic echo -b file.bag -p /topic
+
+Visualize Rviz:
+---------------
+
+	source devel/setup.bash
+	roslaunch MPU9255 record_topic.launch
+	rviz 				# other terminal
+
+Configure as FIG.1 or load config file in rviz_config/imu.rviz.
+
+	[!Alt text](media/fig1.png "RVIZ configuration")
+
+GIF:
+
+		
+
 
 More information about published topics:
 
