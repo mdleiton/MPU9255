@@ -39,7 +39,7 @@ int main(int argc, char **argv){
 
     data_mag.header.stamp = ros::Time::now();
     data_imu.header.stamp = data_mag.header.stamp;
-    data_imu.header.frame_id = "/imu_link";
+    data_imu.header.frame_id = "imu_link";
 
     float conversion_gyro = 3.1415/(180.0*32.8f);
     float conversion_acce = 9.8/16384.0f;
